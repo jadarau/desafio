@@ -11,6 +11,17 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/jquery-ui.min.js') }}" type="text/javascript"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{{ asset('js/cdn.datatables.net_1.10.20_js_jquery.dataTables.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/jquery-ui.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/ajax_googleapis_com_ajax_libs_jquery_3.4.1_jquery.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script> 
+    <script src="{{ asset('js/cdnjs.cloudflare.com_ajax_libs_popper.js_1.14.3_umd_popper.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/code.jquery.com_jquery-1.11.1.min.js') }}" type="text/javascript"></script> 
+    <script src="{{ asset('js/code.jquery.com_ui_1.11.1_jquery-ui.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/jQueryMask/dist/jquery.mask.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/jQueryMask/dist/jquery.mask.min.js') }}" type="text/javascript"></script>  
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -26,10 +37,38 @@
         #busca_ativa{
             display:none;
         }
+        #tela_busca{
+            display:none;
+        }
     </style>
 
 </head>
 <body>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(document).on('click', '.busca', function(){
+            // alert('busca');         
+            $('#cad_inativo').show();   
+            $('#cad_ativo').hide();            
+            $('#busca_inativa').hide();
+            $('#busca_ativa').show();
+            $('#tela_cad').hide();
+            $('#tela_busca').show();
+        });
+
+        $(document).on('click', '.cadastro', function(){
+            // alert('cadastro');
+            $('#cad_ativo').show();
+            $('#cad_inativo').hide();
+            $('#busca_inativa').show();
+            $('#busca_ativa').hide();
+            $('#tela_busca').hide();
+            $('#tela_cad').show();            
+        });
+    });
+</script>
+
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">

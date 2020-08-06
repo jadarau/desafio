@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Controle de Clientes</div>
+                <div class="card-header">Registro de Clientes</div>
 
                 <!-- <div class="card-body">
                     @if (session('status'))
@@ -20,18 +20,17 @@
                     <div class="card-header">
                         <ul class="nav nav-tabs card-header-tabs">
                             <li class="nav-item">
-                                <a class="nav-link active" id="cad_ativo" href="#">Cadastro</a>
-                                <a class="nav-link" id="cad_inativo" href="#">Cadastro</a>
+                                <a class="nav-link active cadastro" id="cad_ativo" href="#">Cadastro</a>
+                                <a class="nav-link cadastro" id="cad_inativo" href="#">Cadastro</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link"  active id="busca_ativa" href="#">Buscar</a>
-                                <a class="nav-link" id="busca_inativa" href="#">Buscar</a>
+                                <a class="nav-link active busca" id="busca_ativa" href="#">Buscar</a>
+                                <a class="nav-link busca" id="busca_inativa" href="#">Buscar</a>
                             </li>                        
                         </ul>
                     </div>
-                    <div class="card-body">
 
-                        
+                    <div class="card-body" id="tela_cad">                        
                         <form action="{{ route('cadastrar') }}" method="POST">
                             @csrf
                             <label>Nome da Empresa</label>
@@ -57,6 +56,10 @@
                             <input type="submit" value="Salvar" class="btn btn-primary">
                         </form>
                     </div>
+                    <div class="card-body" id="tela_busca">                        
+                        BUSCA
+                    </div>
+                    
                     </div>
                 </div>
         </div>
