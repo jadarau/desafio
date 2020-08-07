@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Clientes;
+use Illuminate\Support\Facades\DB;
 
 class ClientesController extends Controller
 {
@@ -16,16 +17,30 @@ class ClientesController extends Controller
         $email = $request->email;
 
         $salvar = new Clientes();
-
-        // echo $empresa;
-        // die();
+        $result = new Clientes();
+        $acao = "abrir";
+        $busca = "";
 
         if($salvar->cadastrar($empresa, $cnpj, $telefone, $responsavel, $email)){
-            echo "<script>OI</script>";
-            return redirect()->route('home')->with('msg','Salvo com sucesso!');
+            
+            $acao = "buscar";
+            $cliente = new Clientes();
+            $result = $cliente->busca("");
+            return view('home')->with(array('result'=>$result,'acao'=>$acao, 'busca'=>$busca));
         }else{
-            echo "<script>NAO</script>";
-            return redirect()->route('home')->with('msg','Ocorreu um erro! Tente novamente.');
+            
+            return view('home')->with(array('result'=>$result,'acao'=>$acao, 'busca'=>$busca));
         }
+    }
+
+    public function buscar(Request $request){
+        $cli = $request->cliente;
+        $busca = $cli;
+       
+        $cliente = new Clientes();
+        $result = $cliente->busca($cli);
+        $acao = "buscar";
+
+        return view('home')->with(array('result'=>$result,'acao'=>$acao, 'busca'=>$busca));
     }
 }

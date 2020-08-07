@@ -74,7 +74,7 @@
             @if (Route::has('login'))
                 <div class="top-right links" style="background:blue;width:99%;height:50px;display: flex;justify-content: center;align-items: center;">
                     @auth
-                        <a style="color:white;" href="{{ url('/home') }}">Home</a>
+                        <a style="color:white;font-size: 14pt;" href="{{ url('/home') }}">Início <span class="fa fa-home" aria-hidden="true"></span></a>
                     @else
                         <a style="color:white;font-size: 14pt;" href="{{ route('login') }}" title="Logar">Login</a>
 

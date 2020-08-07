@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Clientes extends Model
 {
@@ -15,5 +16,11 @@ class Clientes extends Model
         $salvar->responsavel = $responsavel;
         $salvar->email = $email;
         return $salvar->save();
+    }
+
+    public function busca($nome){
+        return DB::table('clientes')->where([
+            ['nome_empresa','like','%'.$nome.'%']
+        ])->get();
     }
 }

@@ -18,4 +18,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::post('cadastrar','UserController@cadastrar')->name('cadastrar');
+Route::post('cadastrar','ClientesController@cadastrar')->name('cadastrar');
+Route::post('buscar','ClientesController@buscar')->name('buscar');

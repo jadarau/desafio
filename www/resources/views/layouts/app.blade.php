@@ -22,6 +22,7 @@
     <script src="{{ asset('js/code.jquery.com_ui_1.11.1_jquery-ui.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/jQueryMask/dist/jquery.mask.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/jQueryMask/dist/jquery.mask.min.js') }}" type="text/javascript"></script>  
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -51,9 +52,22 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
+        var acao = '<?php echo $acao; ?>';
+
+        if(acao == "buscar"){
+            $('#cad_inativo').show(); 
+            $('.nav-item').css({height:"30px"});  
+            $('#cad_ativo').hide();            
+            $('#busca_inativa').hide();
+            $('#busca_ativa').show();
+            $('#tela_cad').hide();
+            $('#tela_busca').show();
+        }
+
         $(document).on('click', '.busca', function(){
             // alert('busca');         
-            $('#cad_inativo').show();   
+            $('#cad_inativo').show(); 
+            $('.nav-item').css({height:"30px"});  
             $('#cad_ativo').hide();            
             $('#busca_inativa').hide();
             $('#busca_ativa').show();
@@ -63,6 +77,7 @@
 
         $(document).on('click', '.cadastro', function(){
             // alert('cadastro');
+            $('.nav-item').css({height:"40px"});
             $('#cad_ativo').show();
             $('#cad_inativo').hide();
             $('#busca_inativa').show();
@@ -70,7 +85,14 @@
             $('#tela_busca').hide();
             $('#tela_cad').show();            
         });
+
+        $("#buscando").click(function(){
+            // alert('oi');
+            $("#busca").submit();
+        });
     });
+
+    
 </script>
 
     <div id="app">

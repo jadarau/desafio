@@ -31,10 +31,10 @@
                     </div>
 
                     <div class="card-body" id="tela_cad">                        
-                        <form action="{{ route('cadastrar') }}" method="POST">
+                        <form action="{{ route('cadastrar') }}" id="cad" method="POST">
                             @csrf
                             <label>Nome da Empresa</label>
-                            <input type="text" class="form-control form-control-sm" name="empresa" aria-describedby="emailHelp">
+                            <input type="text" class="form-control form-control-sm" name="empresa">
                             <br/>
                             <div style="position:relative;width:100%;background:none;float:left">
                                 <div style="float:left;width:49%;background:none;">
@@ -56,8 +56,46 @@
                             <input type="submit" value="Salvar" class="btn btn-primary">
                         </form>
                     </div>
+
                     <div class="card-body" id="tela_busca">                        
-                        BUSCA
+                        <div style="width:100%;height:367px;background:none">
+                        <form action="{{ route('buscar') }}" id="busca" method="POST">
+                            @csrf
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Cliente</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="cliente" value="{{$busca}}" id="cliente" placeholder="Todos">
+                                </div>
+                                <div class="input-group-append">
+                                <button class="btn btn-primary" id="buscando" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                                </div>
+                            </div>
+                            <table class="table">
+                                <thead class="thead-dark">
+                                    <tr>
+                                    <th scope="col">Código</th>
+                                    <th scope="col">Cliente</th>
+                                    <th scope="col">Telefone</th>
+                                    <th scope="col">E-Mail</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                  @if($result)
+                                    @foreach($result as $resu)
+                                        <tr>
+                                        <th scope="row">{{$resu->id}}</th>
+                                        <td>{{$resu->nome_empresa}}</td>
+                                        <td>{{$resu->telefone}}</td>
+                                        <td>{{$resu->email}}</td>
+                                        </tr>   
+                                    @endforeach
+                                  @endif                                 
+                                </tbody>
+                            </table>     
+                        </form>                   
+                        </div>
                     </div>
                     
                     </div>
