@@ -25,6 +25,7 @@ class HomeController extends Controller
     {
         $result = "";
         $acao = "";
-        return view('home')->with(array('result'=>$result,'acao'=>$acao));
+        $busca = "";
+        return view('home')->with(array('result'=>$result,'acao'=>$acao,'busca'=>$busca));
     }
 }

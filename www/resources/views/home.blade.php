@@ -58,7 +58,7 @@
                     </div>
 
                     <div class="card-body" id="tela_busca">                        
-                        <div style="width:100%;height:367px;background:none">
+                        <div style="width:100%;height:367px;background:none;overflow:auto">
                         <form action="{{ route('buscar') }}" id="busca" method="POST">
                             @csrf
                             <div class="form-group row">
@@ -83,13 +83,13 @@
                                 </thead>
                                 <tbody>
                                   @if($result)
-                                    @foreach($result as $resu)
+                                    @foreach($result as $resu)                                        
                                         <tr>
-                                        <th scope="row">{{$resu->id}}</th>
-                                        <td>{{$resu->nome_empresa}}</td>
-                                        <td>{{$resu->telefone}}</td>
-                                        <td>{{$resu->email}}</td>
-                                        </tr>   
+                                        <th scope="row"><a href="{{ route('cadastrar') }}">{{$resu->id}}</a></th>
+                                        <td><a href="{{ route('cadastrar') }}">{{$resu->nome_empresa}}</a></td>
+                                        <td><a href="{{ route('cadastrar') }}">{{$resu->telefone}}</a></td>
+                                        <td><a href="{{ route('cadastrar') }}">{{$resu->email}}</a></td>
+                                        </tr>
                                     @endforeach
                                   @endif                                 
                                 </tbody>
