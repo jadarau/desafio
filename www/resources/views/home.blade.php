@@ -11,17 +11,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Registro de Clientes</div>
 
-                <!-- <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                <div class="card-header" style="font-weight:bold;color:black;font-size:14pt;text-shadow: 2px 2px 2px slategrey;">Registro de Clientes</div>
 
-                    You are logged in!
-                </div> -->
                 <div class="card text-center">
                     <div class="card-header">
                         <ul class="nav nav-tabs card-header-tabs">
@@ -60,10 +52,10 @@
                             <input type="text" class="form-control form-control-sm inputs" name="email" value="{{$pessoa->email}}" aria-describedby="emailHelp">
                             <br/>
                             @if($acao == "editar")
-                            <input type="button" value="Alterar" class="btn btn-warning">
+                            <input type="button" value="Alterar" class="btn btn-primary">
                             @endif
                             @if($acao != "editar")
-                            <input type="submit" value="Salvar" class="btn btn-primary">
+                            <input type="submit" value="Salvar" class="btn btn-success">
                             @endif
                         </form>
                     </div>
