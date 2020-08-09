@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Clientes;
 
 class HomeController extends Controller
 {
@@ -26,6 +27,8 @@ class HomeController extends Controller
         $result = "";
         $acao = "";
         $busca = "";
-        return view('home')->with(array('result'=>$result,'acao'=>$acao,'busca'=>$busca));
+        $pessoa = new Clientes();
+
+        return view('home')->with(array('result'=>$result,'acao'=>$acao,'busca'=>$busca,'pessoa'=>$pessoa));
     }
 }

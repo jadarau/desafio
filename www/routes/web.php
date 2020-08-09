@@ -20,3 +20,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('cadastrar','ClientesController@cadastrar')->name('cadastrar');
 Route::post('buscar','ClientesController@buscar')->name('buscar');
+Route::post('editar','ClientesController@editar')->name('editar');
+Route::get('visualisar/{id}','ClientesController@visualisar');
+Route::post('apagar','ClientesController@apagar')->name('apagar');

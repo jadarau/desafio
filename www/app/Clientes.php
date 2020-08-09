@@ -23,4 +23,8 @@ class Clientes extends Model
             ['nome_empresa','like','%'.$nome.'%']
         ])->get();
     }
+
+    public function cliente_id($id){
+        return $pessoa = Clientes::find($id);
+    }
 }

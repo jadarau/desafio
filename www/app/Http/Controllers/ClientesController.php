@@ -20,17 +20,16 @@ class ClientesController extends Controller
         $result = new Clientes();
         $acao = "abrir";
         $busca = "";
+        $pessoa = new Clientes();
 
-        if($salvar->cadastrar($empresa, $cnpj, $telefone, $responsavel, $email)){
-            
+        if($salvar->cadastrar($empresa, $cnpj, $telefone, $responsavel, $email)){            
             $acao = "buscar";
             $cliente = new Clientes();
             $result = $cliente->busca("");
-            return view('home')->with(array('result'=>$result,'acao'=>$acao, 'busca'=>$busca));
-        }else{
-            
-            return view('home')->with(array('result'=>$result,'acao'=>$acao, 'busca'=>$busca));
         }
+        
+        // return view('home')->with(array('result'=>$result,'acao'=>$acao, 'busca'=>$busca));
+        return view('home')->with(array('result'=>$result,'acao'=>$acao, 'busca'=>$busca,'pessoa'=>$pessoa));
     }
 
     public function buscar(Request $request){
@@ -40,7 +39,22 @@ class ClientesController extends Controller
         $cliente = new Clientes();
         $result = $cliente->busca($cli);
         $acao = "buscar";
+        $pessoa = new Clientes();
 
-        return view('home')->with(array('result'=>$result,'acao'=>$acao, 'busca'=>$busca));
+        return view('home')->with(array('result'=>$result,'acao'=>$acao, 'busca'=>$busca,'pessoa'=>$pessoa));
+    }
+
+    public function visualisar($id){
+        
+        $cliente = new Clientes();
+        $result = "";
+        $acao = "editar";
+        $busca = "";        
+        $pessoa = $cliente->cliente_id($id);
+
+        // var_dump($pessoa);
+        // die();
+
+        return view('home')->with(array('result'=>$result,'acao'=>$acao, 'busca'=>$busca,'pessoa'=>$pessoa));
     }
 }

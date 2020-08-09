@@ -22,7 +22,12 @@
     <script src="{{ asset('js/code.jquery.com_ui_1.11.1_jquery-ui.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/jQueryMask/dist/jquery.mask.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/jQueryMask/dist/jquery.mask.min.js') }}" type="text/javascript"></script>  
+    @if($acao == "editar")
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    @endif
+    @if($acao != "editar")
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    @endif
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -52,7 +57,10 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-        var acao = '<?php echo $acao; ?>';
+        if(acao == "editar"){
+            // $('.inputs').prop('readonly',true);
+            $('.inputs').attr('readonly','readonly');
+        }
 
         if(acao == "buscar"){
             $('#cad_inativo').show(); 

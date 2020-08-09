@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+
+<script type="text/javascript">
+    var acao = '<?php echo $acao; ?>';
+    
+</script>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -34,31 +40,36 @@
                         <form action="{{ route('cadastrar') }}" id="cad" method="POST">
                             @csrf
                             <label>Nome da Empresa</label>
-                            <input type="text" class="form-control form-control-sm" name="empresa">
+                            <input type="text" class="form-control form-control-sm inputs" name="empresa" value="{{$pessoa->nome_empresa}}">
                             <br/>
                             <div style="position:relative;width:100%;background:none;float:left">
                                 <div style="float:left;width:49%;background:none;">
                                     <label>CNPJ</label>
-                                    <input type="text" class="form-control form-control-sm" name="cnpj" aria-describedby="emailHelp">
+                                    <input type="text" class="form-control form-control-sm inputs" name="cnpj" value="{{$pessoa->cnpj}}" aria-describedby="emailHelp">
                                 </div>
                                 <div style="float:right;width:49%;background:none;">
                                     <label>Telefone</label>
-                                    <input type="text" class="form-control form-control-sm" name="tel" aria-describedby="emailHelp">
+                                    <input type="text" class="form-control form-control-sm inputs" name="tel" value="{{$pessoa->telefone}}" aria-describedby="emailHelp">
                                 </div>
                             </div>
                             <br/><br/><br/>
                             <label>Nome do Responsável</label>
-                            <input type="text" class="form-control form-control-sm" name="responsavel" aria-describedby="emailHelp">
+                            <input type="text" class="form-control form-control-sm inputs" name="responsavel" value="{{$pessoa->responsavel}}" aria-describedby="emailHelp">
                             <br/>
-                            <label>email</label>
-                            <input type="text" class="form-control form-control-sm" name="email" aria-describedby="emailHelp">
+                            <label>E-mail</label>
+                            <input type="text" class="form-control form-control-sm inputs" name="email" value="{{$pessoa->email}}" aria-describedby="emailHelp">
                             <br/>
+                            @if($acao == "editar")
+                            <input type="button" value="Alterar" class="btn btn-warning">
+                            @endif
+                            @if($acao != "editar")
                             <input type="submit" value="Salvar" class="btn btn-primary">
+                            @endif
                         </form>
                     </div>
 
                     <div class="card-body" id="tela_busca">                        
-                        <div style="width:100%;height:367px;background:none;overflow:auto">
+                        <div style="width:100%;height:367px;background:none;">
                         <form action="{{ route('buscar') }}" id="busca" method="POST">
                             @csrf
                             <div class="form-group row">
@@ -72,28 +83,30 @@
                                 </button>
                                 </div>
                             </div>
-                            <table class="table">
-                                <thead class="thead-dark">
-                                    <tr>
-                                    <th scope="col">Código</th>
-                                    <th scope="col">Cliente</th>
-                                    <th scope="col">Telefone</th>
-                                    <th scope="col">E-Mail</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                  @if($result)
-                                    @foreach($result as $resu)                                        
+                            <div style="height:320px;background:none;overflow:auto">
+                                <table class="table" width="90%">
+                                    <thead class="thead-dark">
                                         <tr>
-                                        <th scope="row"><a href="{{ route('cadastrar') }}">{{$resu->id}}</a></th>
-                                        <td><a href="{{ route('cadastrar') }}">{{$resu->nome_empresa}}</a></td>
-                                        <td><a href="{{ route('cadastrar') }}">{{$resu->telefone}}</a></td>
-                                        <td><a href="{{ route('cadastrar') }}">{{$resu->email}}</a></td>
+                                        <th scope="col">Código</th>
+                                        <th scope="col">Cliente</th>
+                                        <th scope="col">Telefone</th>
+                                        <th scope="col">E-Mail</th>
                                         </tr>
-                                    @endforeach
-                                  @endif                                 
-                                </tbody>
-                            </table>     
+                                    </thead>
+                                    <tbody style="height:200px;background:none;">
+                                        @if($result)
+                                            @foreach($result as $resu)                                        
+                                                <tr>
+                                                <th scope="row"><a href="visualisar/{{$resu->id}}">{{$resu->id}}</a></th>
+                                                <td><a href="visualisar/{{$resu->id}}">{{$resu->nome_empresa}}</a></td>
+                                                <td><a href="visualisar/{{$resu->id}}">{{$resu->telefone}}</a></td>
+                                                <td><a href="visualisar/{{$resu->id}}">{{$resu->email}}</a></td>
+                                                </tr>
+                                            @endforeach
+                                        @endif                                 
+                                    </tbody>
+                                </table>     
+                            </div>
                         </form>                   
                         </div>
                     </div>
