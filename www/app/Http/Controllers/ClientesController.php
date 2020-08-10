@@ -10,11 +10,21 @@ class ClientesController extends Controller
 {
     //
     public function cadastrar(Request $request){
+        $id = $request->id;
         $empresa = $request->empresa;
         $cnpj = $request->cnpj;
         $telefone = $request->tel;
         $responsavel = $request->responsavel;
         $email = $request->email;
+
+        $cnpj = str_replace('.','',$cnpj);
+        $cnpj = str_replace('/','',$cnpj);
+        $cnpj = str_replace('-','',$cnpj);
+
+        $telefone = str_replace('(','',$telefone);
+        $telefone = str_replace(')','',$telefone);
+        $telefone = str_replace(' ','',$telefone);
+        $telefone = str_replace('-','',$telefone);
 
         $salvar = new Clientes();
         $result = new Clientes();
@@ -22,7 +32,7 @@ class ClientesController extends Controller
         $busca = "";
         $pessoa = new Clientes();
 
-        if($salvar->cadastrar($empresa, $cnpj, $telefone, $responsavel, $email)){            
+        if($salvar->cadastrar($id, $empresa, $cnpj, $telefone, $responsavel, $email)){            
             $acao = "buscar";
             $cliente = new Clientes();
             $result = $cliente->busca("");
@@ -56,5 +66,10 @@ class ClientesController extends Controller
         // die();
 
         return view('home')->with(array('result'=>$result,'acao'=>$acao, 'busca'=>$busca,'pessoa'=>$pessoa));
+    }
+
+    public function endereco(){
+
+        return view('endereco');
     }
 }

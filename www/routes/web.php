@@ -23,3 +23,4 @@ Route::post('buscar','ClientesController@buscar')->name('buscar');
 Route::post('editar','ClientesController@editar')->name('editar');
 Route::get('visualisar/{id}','ClientesController@visualisar');
 Route::post('apagar','ClientesController@apagar')->name('apagar');
+Route::get('endereco','ClientesController@endereco')->name('endereco');

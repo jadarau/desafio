@@ -8,13 +8,19 @@ use Illuminate\Support\Facades\DB;
 class Clientes extends Model
 {
     //
-    public function cadastrar($empresa, $cnpj, $telefone, $responsavel, $email){
-        $salvar = new Clientes();
+    public function cadastrar($id, $empresa, $cnpj, $telefone, $responsavel, $email){
+        if($id){
+            $salvar = Clientes::find($id);
+        }else{
+            $salvar = new Clientes();
+        }
+        
         $salvar->cnpj = $cnpj;
         $salvar->nome_empresa = $empresa;
         $salvar->telefone = $telefone;
         $salvar->responsavel = $responsavel;
         $salvar->email = $email;
+        
         return $salvar->save();
     }
 

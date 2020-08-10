@@ -58,7 +58,10 @@
 <body>
 
 <script type="text/javascript">
+    $("#cnpj").mask('99.999.999/9999-99');
+
     $(document).ready(function(){
+
         if(acao == "editar"){
             // $('.inputs').prop('readonly',true);
             $('.inputs').attr('readonly','readonly');
@@ -99,6 +102,16 @@
         $("#buscando").click(function(){
             // alert('oi');
             $("#busca").submit();
+        });
+
+        $(document).on('click', '#alterar', function(){
+            $('#alterar').remove();
+            $('.inputs').removeAttr('readonly');
+            $('#botao').append('<input type="submit" value="Salvar" class="btn btn-success">');
+        });
+
+        $(document).on('click', '#novo', function(){
+            window.location.href="{{ route('login') }}";
         });
     });
 
